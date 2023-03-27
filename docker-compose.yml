@@ -1,0 +1,101 @@
+version: "3.9"
+
+services:
+  vpn:
+    build: ./vpn
+    container_name: ${VPNName}
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
+    volumes:
+      - ./rsyslog.conf:/etc/rsyslog.conf
+    ports:
+      - "${VPNPort}:${VPNPort}/udp"
+    cap_add:
+      - NET_ADMIN
+    entrypoint: /start_vpn.sh
+    command: ["${ServerName}","${Client}"]
+    hostname: ${VPNName}
+    networks:
+      honeypot_network:
+        ipv4_address: ${VPNIP}
+  ldap:
+    build: ./ldap
+    environment:
+       LDAPIP: ${LDAPIP}
+       LDAP_ORGANISATION: ${LDAP_ORGANISATION}
+       LDAP_DOMAIN: ${LDAP_DOMAIN}
+       LDAP_BASE_DN: ${LDAP_BASE_DN}
+       LDAP_ADMIN_PASSWORD: ${LDAP_ADMIN_PASSWORD}
+       LDAP_CONFIG_PASSWORD: ${LDAP_CONFIG_PASSWORD}
+       LDAP_READONLY_USER: ${LDAP_READONLY_USER}
+       LDAPIP: ${LDAPIP}
+    container_name: ${LDAPName}
+    hostname: ${LDAPName}
+    volumes:
+      - ./rsyslog.conf:/etc/rsyslog.conf
+    networks:
+      honeypot_network:
+        ipv4_address: ${LDAPIP}
+# the LDAP server automatically run process.sh which is a LDAP file
+  rsyslog:
+    build: ./rsyslog
+    container_name: ${RsyslogName}
+    hostname: ${RsyslogName}
+    networks:
+      honeypot_network:
+        ipv4_address: ${RsyslogIP}
+  web:
+    build: ./web
+    container_name: ${WebName}
+    hostname: ${WebName}
+    volumes:
+      - ./rsyslog.conf:/etc/rsyslog.conf
+    entrypoint: /start_web.sh
+    networks:
+      honeypot_network:
+        ipv4_address: ${WebIP}
+  ssh:
+    build: ./ssh
+    environment:
+       LDAPIP: ${LDAPIP}
+       LDAP_BASE_DN: ${LDAP_BASE_DN}
+       LDAP_ADMIN_PASSWORD: ${LDAP_ADMIN_PASSWORD}
+    container_name: ${SSHName}
+    hostname: ${SSHName}
+    entrypoint: /start_ssh.sh
+    volumes:
+      - ./rsyslog.conf:/etc/rsyslog.conf
+    networks:
+      honeypot_network:
+        ipv4_address: ${SSHIP}
+  snort:
+    build: ./snort
+    network_mode: "host"
+    container_name: snort
+    hostname: snort
+    entrypoint: /start_snort.sh
+    volumes:
+      - ./rsyslog.conf:/etc/rsyslog.conf
+  proxy:
+    build: ./proxy
+    hostname: ${ProxyName}
+    entrypoint: /start_proxy.sh
+    ports:
+      - "3128:3128"
+      - "80:80"
+      - "8000:8000"
+      - "8080:8080"
+    volumes:
+      - ./rsyslog.conf:/etc/rsyslog.conf
+    networks:
+      honeypot_network:
+        ipv4_address: ${ProxyIP}
+networks:
+  honeypot_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${NetworkSubnet}
+          gateway: ${Gateway}
+    #driver_opts:
+    #  com.docker.network.bridge.name: honeypot_interface

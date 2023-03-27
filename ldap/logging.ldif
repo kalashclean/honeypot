@@ -1,0 +1,9 @@
+dn: cn=config
+changetype: modify
+replace: olcLogFile
+olcLogFile: /var/log/service/ldap3.log
+
+dn: cn=config
+changetype: modify
+replace: olcLogLevel
+olcLogLevel: trace
