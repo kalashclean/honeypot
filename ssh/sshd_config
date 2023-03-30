@@ -34,5 +34,7 @@ GatewayPorts no
 X11Forwarding yes
 PermitTunnel no
 PrintLastLog yes
+IgnoreUserKnownHosts yes
+
 # Save the configuration and restart the sshd service
 

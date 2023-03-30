@@ -2,7 +2,7 @@
 FROM ubuntu:latest
 
 # Update package list and install rsyslog
-RUN apt-get update && apt-get install -y rsyslog
+RUN apt-get update && apt-get install -y rsyslog && mkdir /var/log/service 
 
 # Copy the custom rsyslog configuration file
 COPY rsyslog.conf /etc/rsyslog.conf

@@ -8,7 +8,12 @@
   },
   "dependencies": {
     "express": "",
-    "ldapjs":""
+    "ldapjs":"",
+    "body-parser":"",
+    "https":"",
+    "fs":"",
+    "http":"",
+    "winston":""
   },
   "author": "",
   "license": "ISC"

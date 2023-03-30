@@ -1,0 +1,8 @@
+#%PAM-1.0
+auth       sufficient	/usr/lib/x86_64-linux-gnu/security/pam_ldap.so
+auth       required     /usr/lib/x86_64-linux-gnu/security/pam_unix_auth.so use_first_pass
+account    sufficient	/usr/lib/x86_64-linux-gnu/security/pam_ldap.so
+account    required     /usr/lib/x86_64-linux-gnu/security/pam_unix_acct.so
+password   required	/usr/lib/x86_64-linux-gnu/security/pam_cracklib.so retry=3
+password   sufficient	/usr/lib/x86_64-linux-gnu/security/pam_ldap.so 
+password   required     /usr/lib/x86_64-linux-gnu/security/pam_pwdb.so try_first_pass
