@@ -18,5 +18,6 @@ tcpdump -i $(ip addr show | grep -E 'inet .*172\.30\.0\.' | awk '{print $NF}') -
 #run client 
 python3 honeyd/main.py &
 # docker-compose
+docker network create streetshares_network
 sudo docker-compose build
 sudo docker-compose up
