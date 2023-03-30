@@ -1,0 +1,62 @@
+mkdir: cannot create directory ‘log/container/2023-03-29-214001’: No such file or directory
+2023-03-29-214001
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘log/container/2023-03-29-214101’: No such file or directory
+2023-03-29-214101
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘log/container/2023-03-29-214201’: No such file or directory
+2023-03-29-214201
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘log/container/2023-03-29-214301’: No such file or directory
+2023-03-29-214301
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘log/container/2023-03-29-214401’: No such file or directory
+2023-03-29-214401
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘log/container/2023-03-29-214501’: No such file or directory
+2023-03-29-214501
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘log/container/2023-03-29-214601’: No such file or directory
+2023-03-29-214601
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘log/container/2023-03-29-214701’: No such file or directory
+2023-03-29-214701
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘log/container/2023-03-29-214801’: No such file or directory
+2023-03-29-214801
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘log/container/2023-03-29-214901’: No such file or directory
+2023-03-29-214901
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘log/container/2023-03-29-215001’: No such file or directory
+2023-03-29-215001
+invalid output path: directory "/root/log/container" does not exist
+/bin/sh: 1: /home/kali/capstone/log.sh: not found
+/bin/sh: 1: /home/kali/capstone/log.sh: not found
+/bin/sh: 1: /home/kali/capstone/log.sh: not found
+/bin/sh: 1: /home/kali/capstone/log.sh: not found
+/bin/sh: 1: /home/kali/capstone/log.sh: not found
+/bin/sh: 1: /home/kali/capstone/log.sh: not found
+/bin/sh: 1: /home/kali/capstone/log.sh: not found
+/bin/sh: 1: /home/kali/capstone/log.sh: not found
+mkdir: cannot create directory ‘/root/HoneyBath/log/container/2023-03-29-220801’: No such file or directory
+2023-03-29-220801
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘/root/HoneyBath/log/container/2023-03-29-220901’: No such file or directory
+2023-03-29-220901
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘/root/HoneyBath/log/container/2023-03-29-221002’: No such file or directory
+2023-03-29-221002
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘/root/HoneyBath/log/container/2023-03-29-221101’: No such file or directory
+2023-03-29-221101
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘/root/HoneyBath/log/container/2023-03-29-221201’: No such file or directory
+2023-03-29-221201
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘/root/HoneyBath/log/container/2023-03-29-221301’: No such file or directory
+2023-03-29-221301
+invalid output path: directory "/root/log/container" does not exist
+mkdir: cannot create directory ‘/root/HoneyBath/log/container/2023-03-29-221401’: No such file or directory
+2023-03-29-221401
+invalid output path: directory "/root/log/container" does not exist

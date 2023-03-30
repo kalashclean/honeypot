@@ -3,7 +3,7 @@ FROM node:16
 COPY common/* /etc/
 # Set the working directory
 WORKDIR /usr/src/app
-
+RUN npm install
 # Install the necessary libraries for Debian-based systems
 RUN apt-get update && \
     apt-get install -y libkrb5-dev  python && \
@@ -17,7 +17,10 @@ RUN ls
 COPY start_web.sh /
 # Copy the application files
 COPY src/ .
-RUN npm install
+# Create the log directory and set permissions
+RUN mkdir -p /var/log/service && \
+    chmod -R 777 /var/log/service
+#RUN npm install
 RUN chmod +x /start_web.sh
 # Expose the web server port
 EXPOSE 3000

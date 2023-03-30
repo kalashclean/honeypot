@@ -1,22 +1,17 @@
 version: "3.9"
 
 services:
-  vpn:
-    build: ./vpn
+  ssh:
+    build: ./ssh2
     container_name: ${VPNName}
-    sysctls:
-      - net.ipv6.conf.all.disable_ipv6=1
     volumes:
       - ./rsyslog.conf:/etc/rsyslog.conf
     ports:
-      - "${VPNPort}:${VPNPort}/udp"
-    cap_add:
-      - NET_ADMIN
-    entrypoint: /start_vpn.sh
-    command: ["${ServerName}","${Client}"]
+      - "${VPNPort}:${VPNPort}"
+    entrypoint: /start_ssh.sh
     hostname: ${VPNName}
     networks:
-      honeypot_network:
+      streetshares_network:
         ipv4_address: ${VPNIP}
   ldap:
     build: ./ldap
@@ -34,7 +29,7 @@ services:
     volumes:
       - ./rsyslog.conf:/etc/rsyslog.conf
     networks:
-      honeypot_network:
+      streetshares_network:
         ipv4_address: ${LDAPIP}
 # the LDAP server automatically run process.sh which is a LDAP file
   rsyslog:
@@ -42,7 +37,7 @@ services:
     container_name: ${RsyslogName}
     hostname: ${RsyslogName}
     networks:
-      honeypot_network:
+      streetshares_network:
         ipv4_address: ${RsyslogIP}
   web:
     build: ./web
@@ -51,10 +46,12 @@ services:
     volumes:
       - ./rsyslog.conf:/etc/rsyslog.conf
     entrypoint: /start_web.sh
+    ports:
+      - "3000:3000"
     networks:
-      honeypot_network:
+      streetshares_network:
         ipv4_address: ${WebIP}
-  ssh:
+  client.credit-information:
     build: ./ssh
     environment:
        LDAPIP: ${LDAPIP}
@@ -66,36 +63,20 @@ services:
     volumes:
       - ./rsyslog.conf:/etc/rsyslog.conf
     networks:
-      honeypot_network:
+      streetshares_network:
         ipv4_address: ${SSHIP}
   snort:
     build: ./snort
     network_mode: "host"
-    container_name: snort
-    hostname: snort
+    container_name: ${SNORTName}
+    hostname: ${SNORTName}
     entrypoint: /start_snort.sh
     volumes:
       - ./rsyslog.conf:/etc/rsyslog.conf
-  proxy:
-    build: ./proxy
-    hostname: ${ProxyName}
-    entrypoint: /start_proxy.sh
-    ports:
-      - "3128:3128"
-      - "80:80"
-      - "8000:8000"
-      - "8080:8080"
-    volumes:
-      - ./rsyslog.conf:/etc/rsyslog.conf
-    networks:
-      honeypot_network:
-        ipv4_address: ${ProxyIP}
 networks:
-  honeypot_network:
+  streetshares_network:
     driver: bridge
     ipam:
       config:
         - subnet: ${NetworkSubnet}
           gateway: ${Gateway}
-    #driver_opts:
-    #  com.docker.network.bridge.name: honeypot_interface
