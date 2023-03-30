@@ -1,0 +1,4 @@
+schedule
+scapy==2.4.4
+schedule==1.1.0
+configparser==5.3.0
