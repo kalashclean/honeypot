@@ -1,8 +1,8 @@
 # Use the official Node.js LTS image
 FROM node:16
-COPY common/* /etc/
 # Set the working directory
 WORKDIR /usr/src/app
+COPY src/node_modules node_modules
 RUN npm install
 # Install the necessary libraries for Debian-based systems
 RUN apt-get update && \
