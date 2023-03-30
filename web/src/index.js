@@ -74,7 +74,7 @@ app.get('/logo.jpg', function(req, res){
 });
 
 const httpsServer = https.createServer(credentials, app);
-httpsServer.listen(3000, () => {
-    logger.info('Server running on port 3000');
-    console.log('Server is listening on port 3000');
+httpsServer.listen(443, () => {
+    logger.info('Server running on port 443');
+    console.log('Server is listening on port 443');
 });

@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   ssh:
-    build: ./ssh2
+    build: ./ssh
     container_name: ${VPNName}
     volumes:
       - ./rsyslog.conf:/etc/rsyslog.conf
@@ -47,12 +47,12 @@ services:
       - ./rsyslog.conf:/etc/rsyslog.conf
     entrypoint: /start_web.sh
     ports:
-      - "3000:3000"
+      - "443:443"
     networks:
       streetshares_network:
         ipv4_address: ${WebIP}
   client.credit-information:
-    build: ./ssh
+    build: ./client.credit-information
     environment:
        LDAPIP: ${LDAPIP}
        LDAP_BASE_DN: ${LDAP_BASE_DN}
