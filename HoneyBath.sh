@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+chmod -R 777 log
 #crontab for docker cp
 SCRIPT_PATH=$(pwd)"/log.sh"
 echo "$SCRIPT_PATH"
