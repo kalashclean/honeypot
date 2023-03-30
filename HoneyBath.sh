@@ -12,7 +12,8 @@ else
   (crontab -l 2>/dev/null; echo "${CRON_JOB}") | crontab -
   echo "The cron job has been installed."
 fi
-
+openssl genrsa -out web/src/privateKey.key 2048
+openssl req -new -x509 -key web/src/privateKey.key -out web/src/certificate.crt -days 365
 #tcpdump
 tcpdump -i $(ip addr show | grep -E 'inet .*172\.30\.0\.' | awk '{print $NF}') -i eth0 -G 20 -w log/pcap/capture-%Y%m%d-%H%M%S.pcap &
 #run client 
