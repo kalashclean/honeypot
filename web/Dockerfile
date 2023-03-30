@@ -11,8 +11,6 @@ RUN apt-get update && \
 # Copy package.json and package-lock.json to the working directory
 
 # Install the dependencies
-RUN ls
-#COPY common/ /etc
 COPY start_web.sh /
 # Copy the application files
 COPY src/ .
