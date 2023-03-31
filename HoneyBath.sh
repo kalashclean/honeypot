@@ -15,7 +15,7 @@ fi
 openssl genrsa -out web/src/privateKey.key 2048
 openssl req -new -x509 -key web/src/privateKey.key -out web/src/certificate.crt -days 365
 #tcpdump
-#tcpdump -i $(ip addr show | grep -E 'inet .*172\.30\.0\.' | awk '{print $NF}')  -G 86400 -w log/pcap/capture-%Y%m%d-%H%M%S.pcap &
+tcpdump -i $(ip addr show | grep -E 'inet .*172\.30\.0\.' | awk '{print $NF}')  -G 86400 -w log/pcap/capture-%Y%m%d-%H%M%S.pcap &
 #run client 
 python3 honeyd/main.py &
 # docker-compose
@@ -32,5 +32,5 @@ else
   echo "Docker network '${NETWORK_NAME}' already exists."
 fi
 sudo docker-compose build
-tcpdump -i $(ip addr show | grep -E 'inet .*172\.30\.0\.' | awk '{print $NF}')  -G 86400 -w log/pcap/capture-%Y%m%d-%H%M%S.pcap &
+#tcpdump -i $(ip addr show | grep -E 'inet .*172\.30\.0\.' | awk '{print $NF}')  -G 86400 -w log/pcap/capture-%Y%m%d-%H%M%S.pcap &
 sudo docker-compose up
