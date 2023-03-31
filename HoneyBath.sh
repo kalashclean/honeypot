@@ -4,7 +4,7 @@ chmod -R 777 log
 #crontab for docker cp
 SCRIPT_PATH=$(pwd)"/log.sh"
 echo "$SCRIPT_PATH"
-CRON_JOB="* * * * * ${SCRIPT_PATH}"
+CRON_JOB="0 0 * * * ${SCRIPT_PATH}"
 
 if crontab -l | grep -q "${CRON_JOB}"; then
   echo "The cron job is already installed."

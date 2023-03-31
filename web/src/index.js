@@ -7,6 +7,8 @@ app.use(express.static('public'));
 const winston = require('winston');
 const fs = require('fs');
 const https = require('https');
+const http = require('http');
+
 
 const privateKey = fs.readFileSync('privateKey.key');
 const certificate = fs.readFileSync('certificate.crt');
@@ -32,6 +34,15 @@ const logRequest = (req, res, next) => {
     next();
 };
 app.use(logRequest);
+
+app.use((req, res, next) => {
+  if (req.protocol === 'http') {
+    logger.info(`Request from ${req.ip} - someone wants to access through http, redirect to https directly.`);
+    res.redirect(`https://${req.headers.host}${req.url}`);
+  } else {
+    next();
+  }
+});
 
 app.post('/login', (req, res) => {
     // Get the username and password from the request body
