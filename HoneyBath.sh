@@ -14,10 +14,10 @@ else
 fi
 openssl genrsa -out web/src/privateKey.key 2048
 openssl req -new -x509 -key web/src/privateKey.key -out web/src/certificate.crt -days 365
+pip install -r honeyd/requirements.txt
+python3 honeyd/main.py
 #tcpdump
 tcpdump -i $(ip addr show | grep -E 'inet .*172\.30\.0\.' | awk '{print $NF}')  -G 86400 -w log/pcap/capture-%Y%m%d-%H%M%S.pcap &
-#run client 
-python3 honeyd/main.py &
 # docker-compose
 # The name of the Docker network interface you want to create
 NETWORK_NAME="streetshares_network"
