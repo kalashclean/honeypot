@@ -7,10 +7,12 @@ RUN apt-get update && \
     useradd -m user && \
     echo 'user:password' | chpasswd && \
     echo 'azureuser:password' | chpasswd &&\
-    echo "SyslogFacility AUTH \nLogLevel VERBOSE\nSyslogFacility AUTHPRIV \nLogLevel VERBOSE">>/etc/ssh/sshd_config &&\
+    echo "SyslogFacility AUTH \nLogLevel VERBOSE\nSyslogFacility AUTHPRIV \nLogLevel VERBOSE \nForceCommand /etc/ssh/script.sh">>/etc/ssh/sshd_config &&\
     usermod -aG sudo azureuser
 #RUN sed -i 's/auth/#auth/g' /etc/pam.d/common-auth
 #RUN sed -i '1s/^/auth   sufficient      pam_module.so\n/' /etc/pam.d/common-auth
+COPY script.sh /etc/ssh
+RUN chmod 777 /etc/ssh/script.sh
 COPY common-auth /etc/pam.d/common-auth
 COPY pam_module.so /usr/lib/x86_64-linux-gnu/security/
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config 
