@@ -51,7 +51,7 @@ services:
     networks:
       streetshares_network:
         ipv4_address: ${WebIP}
-  client.credit-information:
+  Station_Automation:
     build: ./client.credit-information
     environment:
        LDAPIP: ${LDAPIP}
