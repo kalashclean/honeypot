@@ -19,6 +19,10 @@ RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 #RUN echo "export PROMPT_COMMAND='RETRN_VAL=\$?;logger -p local1.notice -t bash -i -- \$(history 1 | sed \"s/^[ ]*[0-9]\\+[ ]*//\" )[\$RETRN_VAL]' && export HISTTIMEFORMAT='%Y-%m-%d %T '" >> /etc/bash.bashrc
 RUN mkdir /var/log/service  && chmod 700 /var/log/service
 RUN echo "export PROMPT_COMMAND='RETRN_VAL=\$?;logger -p local1.notice -t bash -i -- \$(history 1 | sed \"s/^[ ]*[0-9]\\+[ ]*//\" )[\$RETRN_VAL]' && export HISTTIMEFORMAT='%Y-%m-%d %T '" >> /etc/bash.bashrc
+# Comment out pam_systemd.so module
+RUN sed -i 's/session\s*optional\s*pam_systemd.so/#&/' /etc/pam.d/common-session
+RUN sed -i 's/-session\s*optional\s*pam_systemd.so/#&/' /etc/pam.d/runuser-l
 #RUN echo "KexAlgorithms diffie-hellman-group1-sha1,diffie-hellman-group-exchange-sha1\n Ciphers +aes128-cbc">> /etc/ssh/sshd_config
 COPY start_ssh.sh start_ssh.sh
 #CMD ["/usr/sbin/sshd", "-D"]
+

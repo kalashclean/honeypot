@@ -13,7 +13,7 @@ gidNumber: 10000
 homeDirectory: /home/jdoe
 loginShell: /bin/bash
 gecos: John Doe
-userPassword: {SHA}UDSZw8GXKTISELsyNZUQRp8QeUc=
+userPassword: {SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g=
 shadowLastChange: 0
 shadowMax: -1
 shadowWarning: 7
