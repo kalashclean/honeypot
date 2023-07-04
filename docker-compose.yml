@@ -13,15 +13,15 @@ services:
     networks:
       streetshares_network:
         ipv4_address: ${VPNIP}
-   rdp:
-     build: ./rdp
-     container_name: ${RDPName}
-     ports:
-       - "${RDPPort}:${RDPPort}"
-     hostname: ${RDPName}
-     networks:
-       streetshares_network:
-         ipv4_address: ${RDPIP}
+  rdp:
+    build: ./rdp
+    container_name: ${RDPName}
+    ports:
+      - "${RDPPort}:${RDPPort}"
+    hostname: ${RDPName}
+    networks:
+      streetshares_network:
+        ipv4_address: ${RDPIP}
   ldap:
     build: ./ldap
     environment:
